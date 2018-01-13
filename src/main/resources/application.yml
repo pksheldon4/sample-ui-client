@@ -1,0 +1,21 @@
+server:
+  port: 8080
+#  context-path: /uiclient
+
+spring:
+  thymeleaf:
+    cache: false
+
+
+security:
+  basic:
+    enabled: false
+  oauth2:
+    client:
+      client-id: lssClient
+      client-secret: lssSecret
+      access-token-uri: http://localhost:8083/authserver/oauth/token
+      user-authorization-uri: http://localhost:8083/authserver/oauth/authorize
+      scope: read, write
+      grant-type: authorization_code
+      use-current-uri: true
