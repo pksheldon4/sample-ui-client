@@ -3,6 +3,7 @@ package com.example.pksiv.uiclient.web.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.oauth2.client.OAuth2RestTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.LinkedMultiValueMap;
@@ -21,11 +22,12 @@ class MainController {
     @Autowired
     private OAuth2RestTemplate restTemplate;
 
-    //
+    @Value("${resource.server.uri:http://localhost:8081/api/users}")
+    private String resourceServerUri;
 
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView list() {
-        final List<User> users = restTemplate.getForObject("http://localhost:8081/resource-server/api/users", List.class);
+        final List<User> users = restTemplate.getForObject(resourceServerUri, List.class);
         return new ModelAndView("list", "users", users);
     }
 
@@ -34,7 +36,7 @@ class MainController {
         final MultiValueMap<String, String> param = new LinkedMultiValueMap<String, String>();
         param.add("email", user.getEmail());
         param.add("password", user.getPassword());
-        final User created = restTemplate.postForObject("http://localhost:8081/resource-server/api/users", param, User.class);
+        final User created = restTemplate.postForObject(resourceServerUri , param, User.class);
         System.out.println(created);
         return "redirect:/user";
     }
