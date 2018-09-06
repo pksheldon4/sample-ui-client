@@ -13,8 +13,12 @@ security:
     client:
       client-id: lssClient
       client-secret: lssSecret
-      access-token-uri: http://localhost:8083/oauth/token
-      user-authorization-uri: http://localhost:8083/oauth/authorize
+      access-token-uri: http://auth-server:8083/oauth/token
+      user-authorization-uri: http://auth-server:8083/oauth/authorize
       scope: read, write
       grant-type: authorization_code
       use-current-uri: true
+
+resource:
+  server:
+    uri: http://resource-server:8081/api/users
