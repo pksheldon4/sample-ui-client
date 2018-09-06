@@ -3,12 +3,12 @@ security:
     client:
       client-id: lssClient
       client-secret: lssSecret
-      access-token-uri: https://auth-server.local.pcfdev.io/oauth/token
-      user-authorization-uri: https://auth-server.local.pcfdev.io/oauth/authorize
+      access-token-uri: https://auth-server-ps.cfapps.io/oauth/token
+      user-authorization-uri: https://auth-server-ps.cfapps.io/oauth/authorize
       scope: read, write
       grant-type: authorization_code
       use-current-uri: true
 
 resource:
   server:
-    uri: https://resource-server.local.pcfdev.io/api/users
+    uri: https://resource-server-ps.cfapps.io/api/users
